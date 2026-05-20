@@ -31,6 +31,11 @@ const agreementError = document.querySelector("#agree-er");
 const image = document.querySelector("#img");
 const imageError = document.querySelector("#img-er")
 
+const regex = {
+    username: /^[a-zA-Z\d_]+$/,
+    phone: /^\+?[\d -]{10,20}$/,
+    email: /^$/
+}
 
 form.addEventListener('submit', e => {
     const validations = [
@@ -73,8 +78,18 @@ function checkUsername() {
         return false;
     }
 
-    if (value.includes(' ')) {
-        usernameError.textContent = "You cannot use 'Space' in username!";
+    if (value.length < 3) {
+        usernameError.textContent = "Username too short!";
+        return false;
+    }
+
+    if (value.length > 18) {
+        usernameError.textContent = "Username too long!";
+        return false;
+    }
+
+    if (!regex.username.test(value)) {
+        usernameError.textContent = "Username can only contain letters, digits and underscore!";
         return false;
     }
 
@@ -86,8 +101,8 @@ function checkUsername() {
 function checkGender() {
     let value = gender.value;
     
-    if (value === "") {
-        genderError.textContent = "Plese select a gender!";
+    if (!value) {
+        genderError.textContent = "Please select a gender!";
         return false;
     }
 
@@ -104,7 +119,7 @@ function checkPhone() {
         return false;
     }
 
-    if (isNaN(value)) {
+    if (!regex.phone.test(value)) {
         phoneError.textContent = "Please enter a valid phone number!";
         return false;
     }
@@ -115,13 +130,28 @@ function checkPhone() {
 
 
 function checkDob() {
-    let value = dob.value;
-
-    if (value === "") {
+    if (!dob.value) {
         dobError.textContent = "Please enter your date of birth!"
         return false;
     }
 
+    const dobValue = new Date(dob.value);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    
+    if (dobValue > currentDate) {
+        dobError.textContent = "Please enter a valid date of birth!"
+        return false;
+    }
+
+    const minDate = new Date(currentDate);
+    minDate.setFullYear(minDate.getFullYear() - 18)
+
+    if (dobValue > minDate) {
+        dobError.textContent = "You need to be atleast 18 years old to register!"
+        return false;
+    }
+    
     dobError.textContent = "";
     return true;
 }
@@ -155,7 +185,7 @@ function checkPassword() {
     }
 
     if (pw !== confPw) {
-        passwordError.textContent = "Passwords does not match!";
+        passwordError.textContent = "Passwords do not match!";
         return false;
     }
 
