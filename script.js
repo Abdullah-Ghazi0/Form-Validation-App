@@ -31,6 +31,9 @@ const agreementError = document.querySelector("#agree-er");
 const image = document.querySelector("#img");
 const imageError = document.querySelector("#img-er")
 
+const maxImageSize = 2100000;
+const allowedImages = ['image/png', 'image/jpeg', 'image/jpg'];
+
 const regex = {
     username: /^[a-zA-Z\d_]+$/,
     phone: /^\+?[\d -]{10,20}$/,
@@ -224,9 +227,20 @@ function checkAgreement() {
 }
 
 function checkImage() {
+    let imgFile = image.files[0];
 
-    if (image.files.length === 0) {
+    if (!imgFile) {
         imageError.textContent = "Please Upload your Picture!"
+        return false;
+    }
+
+    if (imgFile.size > maxImageSize) {
+        imageError.textContent = "File too large! Max size is 2MB."
+        return false;
+    }
+
+    if (!allowedImages.includes(imgFile.type)) {
+        imageError.textContent = "You can only upload Image!"
         return false;
     }
 
