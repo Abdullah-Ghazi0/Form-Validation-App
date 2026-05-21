@@ -21,8 +21,8 @@ const emailError = document.querySelector("#email-er");
 const password = document.querySelector("#password");
 const confPassword = document.querySelector("#conf-password");
 const passwordError = document.querySelector("#password-er");
+const showPassword = document.querySelector("#show-pw");
 
-const accountType = document.querySelectorAll('input[type="radio"]')
 const accountTypeError = document.querySelector("#accountType-er")
 
 const agreement = document.querySelector("#agree")
@@ -34,7 +34,7 @@ const imageError = document.querySelector("#img-er")
 const regex = {
     username: /^[a-zA-Z\d_]+$/,
     phone: /^\+?[\d -]{10,20}$/,
-    email: /^$/
+    email: /^(?![._])[a-zA-Z0-9_.%+-]+(?<![._])@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/,
 }
 
 form.addEventListener('submit', e => {
@@ -112,7 +112,7 @@ function checkGender() {
 
 
 function checkPhone() {
-    let value = phone.value.replaceAll(' ', '');
+    let value = phone.value.trim();
 
     if (value === "") {
         phoneError.textContent = "Please enter your phone number!";
@@ -162,6 +162,11 @@ function checkEmail() {
 
     if (value === '') {
         emailError.textContent = "Please enter your email address!"
+        return false;
+    }
+
+    if (!regex.email.test(value)) {
+        emailError.textContent = "Please enter a valid email address!";
         return false;
     }
 
@@ -228,3 +233,18 @@ function checkImage() {
     imageError.textContent = "";
     return true;
 }
+
+
+showPassword.addEventListener("click", () => {
+    pwType = password.type === "password";
+
+    if (pwType) {
+        showPassword.textContent = "Hide";
+        password.type = "text";
+        confPassword.type = "text";
+    } else {
+        showPassword.textContent = "show";
+        password.type = "password";
+        confPassword.type = "password";
+    }
+})

@@ -16,3 +16,8 @@ form {
     align-items: center;
     gap: 15px;
 }
+
+#pw {
+    display: flex;
+    flex-direction: column;
+}
