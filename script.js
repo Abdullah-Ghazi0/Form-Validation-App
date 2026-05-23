@@ -36,8 +36,9 @@ const allowedImages = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const regex = {
     username: /^[a-zA-Z\d_]+$/,
-    phone: /^\+?[\d -]{10,20}$/,
+    phone: /^\+?\d[\d -]{9,18}$/,
     email: /^(?![._])[a-zA-Z0-9_.%+-]+(?<![._])@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,32}$/
 }
 
 form.addEventListener('submit', e => {
@@ -187,6 +188,16 @@ function checkPassword() {
         return false;
     }
 
+    if (pw.length < 8) {
+        passwordError.textContent = "Password must be atleast 8 characters long!"
+        return false;
+    }
+
+    if (!regex.password.test(pw)) {
+        passwordError.textContent = "Password must contain at least one lowercase, uppercase, digit and a special character!";
+        return false;
+    }
+
     if (confPw === "") {
         passwordError.textContent = "Please confirm password!";
         return false;
@@ -204,7 +215,7 @@ function checkPassword() {
 
 function checkAccountType() {
 
-    const selected = document.querySelector("input[type='radio']:checked")
+    const selected = document.querySelector("input[name='accountType']:checked")
 
     if (!selected) {
         accountTypeError.textContent = "Please Select an account type!"
@@ -250,14 +261,14 @@ function checkImage() {
 
 
 showPassword.addEventListener("click", () => {
-    pwType = password.type === "password";
+    const pwType = password.type === "password";
 
     if (pwType) {
         showPassword.textContent = "Hide";
         password.type = "text";
         confPassword.type = "text";
     } else {
-        showPassword.textContent = "show";
+        showPassword.textContent = "Show";
         password.type = "password";
         confPassword.type = "password";
     }
