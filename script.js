@@ -60,15 +60,26 @@ form.addEventListener('submit', e => {
     if (!isValid) e.preventDefault();
 })
 
+function showErrorState(elem) {
+    elem.classList.add("error-state");
+    elem.classList.remove("success-state");
+}
+
+function showSucessState(elem) {
+    elem.classList.add("success-state");
+    elem.classList.remove("error-state")
+}
 
 function checkName() {
     let value = fullName.value.trim();
 
     if (value === "") {
         fullNameError.textContent = "Please Enter your name!";
+         showErrorState(fullName)
         return false;
     }
 
+    showSucessState(fullName);
     fullNameError.textContent = "";
     return true;
 }
@@ -79,24 +90,29 @@ function checkUsername() {
 
     if (value === "") {
         usernameError.textContent = "Please Enter a username!";
+        showErrorState(username);
         return false;
     }
 
     if (value.length < 3) {
         usernameError.textContent = "Username too short!";
+        showErrorState(username);
         return false;
     }
 
     if (value.length > 18) {
         usernameError.textContent = "Username too long!";
+        showErrorState(username);
         return false;
     }
 
     if (!regex.username.test(value)) {
         usernameError.textContent = "Username can only contain letters, digits and underscore!";
+        showErrorState(username);
         return false;
     }
 
+    showSucessState(username);
     usernameError.textContent = "";
     return true;
 }
@@ -107,9 +123,11 @@ function checkGender() {
     
     if (!value) {
         genderError.textContent = "Please select a gender!";
+        showErrorState(gender);
         return false;
     }
 
+    showSucessState(gender);
     genderError.textContent = "";
     return true;
 }
@@ -120,14 +138,17 @@ function checkPhone() {
 
     if (value === "") {
         phoneError.textContent = "Please enter your phone number!";
+        showErrorState(phone);
         return false;
     }
 
     if (!regex.phone.test(value)) {
         phoneError.textContent = "Please enter a valid phone number!";
+        showErrorState(phone);
         return false;
     }
 
+    showSucessState(phone);
     phoneError.textContent = "";
     return true;
 }
@@ -136,6 +157,7 @@ function checkPhone() {
 function checkDob() {
     if (!dob.value) {
         dobError.textContent = "Please enter your date of birth!"
+        showErrorState(dob);
         return false;
     }
 
@@ -145,6 +167,7 @@ function checkDob() {
     
     if (dobValue > currentDate) {
         dobError.textContent = "Please enter a valid date of birth!"
+        showErrorState(dob);
         return false;
     }
 
@@ -153,9 +176,11 @@ function checkDob() {
 
     if (dobValue > minDate) {
         dobError.textContent = "You need to be atleast 18 years old to register!"
+        showErrorState(dob);
         return false;
     }
     
+    showSucessState(dob);
     dobError.textContent = "";
     return true;
 }
@@ -166,14 +191,17 @@ function checkEmail() {
 
     if (value === '') {
         emailError.textContent = "Please enter your email address!"
+        showErrorState(email);
         return false;
     }
 
     if (!regex.email.test(value)) {
         emailError.textContent = "Please enter a valid email address!";
+        showErrorState(email);
         return false;
     }
 
+    showSucessState(email);
     emailError.textContent = "";
     return true;
 }
@@ -185,29 +213,41 @@ function checkPassword() {
 
     if (pw === '') {
         passwordError.textContent = "Please enter a password!";
+        showErrorState(password);
+        showErrorState(confPassword);
         return false;
     }
 
     if (pw.length < 8) {
         passwordError.textContent = "Password must be atleast 8 characters long!"
+        showErrorState(password);
+        showErrorState(confPassword);
         return false;
     }
 
     if (!regex.password.test(pw)) {
-        passwordError.textContent = "Password must contain at least one lowercase, uppercase, digit and a special character!";
+        passwordError.textContent = "Password must contain lowercase, uppercase, digit and special character!";
+        showErrorState(password);
+        showErrorState(confPassword);
         return false;
     }
 
     if (confPw === "") {
         passwordError.textContent = "Please confirm password!";
+        showErrorState(password);
+        showErrorState(confPassword);
         return false;
     }
 
     if (pw !== confPw) {
         passwordError.textContent = "Passwords do not match!";
+        showErrorState(password);
+        showErrorState(confPassword);
         return false;
     }
 
+    showSucessState(password);
+    showSucessState(confPassword);
     passwordError.textContent = "";
     return true;
 }
