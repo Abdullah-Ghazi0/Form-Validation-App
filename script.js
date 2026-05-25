@@ -23,6 +23,7 @@ const confPassword = document.querySelector("#conf-password");
 const passwordError = document.querySelector("#password-er");
 const showPassword = document.querySelector("#show-pw");
 
+const accountTypeBox = document.querySelector("#accountTypeBox");
 const accountTypeError = document.querySelector("#accountType-er")
 
 const agreement = document.querySelector("#agree")
@@ -313,3 +314,16 @@ showPassword.addEventListener("click", () => {
         confPassword.type = "password";
     }
 })
+
+
+fullName.addEventListener("blur", checkName)
+username.addEventListener("blur", checkUsername)
+gender.addEventListener("blur", checkGender)
+phone.addEventListener("blur", checkPhone)
+dob.addEventListener("blur", checkDob)
+email.addEventListener("blur", checkEmail)
+password.addEventListener("blur", checkPassword)
+confPassword.addEventListener("blur", checkPassword)
+accountTypeBox.addEventListener("click", checkAccountType)
+agreement.addEventListener("blur", checkAgreement)
+image.addEventListener("blur", checkImage)

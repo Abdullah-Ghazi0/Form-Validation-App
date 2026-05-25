@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     background-color: #f8f9fa;
 
-    padding: 2rem 3rem;
+    padding: clamp(12px, 4vw, 32px) clamp(18px, 4vw, 48px);
     border-radius: 2rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
@@ -39,7 +39,7 @@ form {
     gap: 32px 64px;
     
     flex-wrap: wrap;
-    max-width: 600px;
+    width: clamp(340px, 75vw, 600px);
 }
 
 p,
@@ -57,7 +57,7 @@ label {
 }
 
 .field {
-    background: #e3ebf3;
+    background: #f6fbff;
     border-radius: 1rem;
     height: 35px;
     width: 100%;
