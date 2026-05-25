@@ -32,7 +32,7 @@ const agreementError = document.querySelector("#agree-er");
 const image = document.querySelector("#img");
 const imageError = document.querySelector("#img-er")
 
-const maxImageSize = 2100000;
+const maxImageSize = 2 * 1024 * 1024;
 const allowedImages = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const regex = {
@@ -66,7 +66,7 @@ function showErrorState(elem) {
     elem.classList.remove("success-state");
 }
 
-function showSucessState(elem) {
+function showSuccessState(elem) {
     elem.classList.add("success-state");
     elem.classList.remove("error-state")
 }
@@ -80,7 +80,7 @@ function checkName() {
         return false;
     }
 
-    showSucessState(fullName);
+    showSuccessState(fullName);
     fullNameError.textContent = "";
     return true;
 }
@@ -113,7 +113,7 @@ function checkUsername() {
         return false;
     }
 
-    showSucessState(username);
+    showSuccessState(username);
     usernameError.textContent = "";
     return true;
 }
@@ -128,7 +128,7 @@ function checkGender() {
         return false;
     }
 
-    showSucessState(gender);
+    showSuccessState(gender);
     genderError.textContent = "";
     return true;
 }
@@ -149,7 +149,7 @@ function checkPhone() {
         return false;
     }
 
-    showSucessState(phone);
+    showSuccessState(phone);
     phoneError.textContent = "";
     return true;
 }
@@ -181,7 +181,7 @@ function checkDob() {
         return false;
     }
     
-    showSucessState(dob);
+    showSuccessState(dob);
     dobError.textContent = "";
     return true;
 }
@@ -202,7 +202,7 @@ function checkEmail() {
         return false;
     }
 
-    showSucessState(email);
+    showSuccessState(email);
     emailError.textContent = "";
     return true;
 }
@@ -247,8 +247,8 @@ function checkPassword() {
         return false;
     }
 
-    showSucessState(password);
-    showSucessState(confPassword);
+    showSuccessState(password);
+    showSuccessState(confPassword);
     passwordError.textContent = "";
     return true;
 }
@@ -325,5 +325,5 @@ email.addEventListener("blur", checkEmail)
 password.addEventListener("blur", checkPassword)
 confPassword.addEventListener("blur", checkPassword)
 accountTypeBox.addEventListener("click", checkAccountType)
-agreement.addEventListener("blur", checkAgreement)
-image.addEventListener("blur", checkImage)
+agreement.addEventListener("change", checkAgreement)
+image.addEventListener("change", checkImage)
