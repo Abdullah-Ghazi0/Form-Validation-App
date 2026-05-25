@@ -2,7 +2,8 @@
 
 A production-quality client-side form validation app built with **vanilla HTML, CSS, and JavaScript**
 
----
+<img width="1000" height="800" alt="form" src="https://github.com/user-attachments/assets/af4cb480-cae8-496e-9f8e-c3645ef67abe" />
+<img width="1000" height="800" alt="formError" src="https://github.com/user-attachments/assets/2cdb4b24-bba1-49f1-9fb8-d940f4cf5a96" />
 
 ## Overview
  
