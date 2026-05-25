@@ -11,7 +11,7 @@ body {
     justify-content: center;
     font-size: 17px;
     font-family: "Nunito", sans-serif;
-    background-color: #415a77;
+    background: linear-gradient(135deg, #304157, #415a77);
 }
 
 .container {

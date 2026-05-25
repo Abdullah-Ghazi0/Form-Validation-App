@@ -1,57 +1,58 @@
 # Form Validation App
 
-A basic form validation project built with vanilla JavaScript.
-
-This app validates user input fields and displays error messages when required fields are missing or invalid. The project is being improved step-by-step with more advanced validation features like Regex validation and stronger input checks.
+A production-quality client-side form validation app built with **vanilla HTML, CSS, and JavaScript**
 
 ---
 
-## Features
+## Overview
+ 
+This project demonstrates real-world form validation techniques without relying on any external validation library. Every check is hand-written, from regex patterns to file type verification, with a focus on clean UX feedback and accessible markup.
 
-- Required field validation
-- Username validation
-- Password confirmation check
-- Radio button validation
-- Checkbox agreement validation
-- File upload validation
-- Dynamic error messages
-- Prevents form submission if validation fails
+---
+ 
+## Features
+ 
+### Validation Logic
+- **Real-time feedback** — fields validate on blur; errors clear as the user corrects them
+- **Regex-powered** — username, phone, email, and password validated against strict patterns
+- **Password strength enforcement** — requires lowercase, uppercase, digit, and special character
+- **Password match check** — confirm password verified against original in real time
+- **Age gate** — date of birth validated; users must be 18 or older
+- **File validation** — checks file presence, type (`jpg`, `jpeg`, `png`), and size (max 2MB)
+- **All-or-nothing submit** — form only submits when every field passes
+
+### UX & Accessibility
+- Visual error state (red border) and success state (green border) per field
+- Descriptive, specific error messages — no generic "invalid input"
+- Show/Hide password toggle
+- Semantic HTML with proper `<label>` associations
+
+### Styling
+- Responsive layout using `clamp()` and flexbox — no media queries needed
+- Google Font (Nunito) for a clean, modern typographic feel
+- Smooth focus transitions with box-shadow glow
+- Mobile-friendly
 
 ---
 
 ## Validated Fields
-
-- Full Name
-- Username
-- Gender
-- Phone Number
-- Date of Birth
-- Email Address
-- Password & Confirm Password
-- Account Type
-- Terms Agreement
-- Profile Image Upload
-
+ 
+| Field | Rules |
+|---|---|
+| Full Name | Required |
+| Username | 3–18 chars, letters/digits/underscore only |
+| Gender | Selection required |
+| Phone Number | Valid international format |
+| Date of Birth | Valid date, user must be 18+ |
+| Email | RFC-compliant regex pattern |
+| Password | 8–32 chars, mixed case, digit, special char |
+| Confirm Password | Must match password |
+| Account Type | One radio option required |
+| Terms Agreement | Must be checked |
+| Profile Picture | Required, PNG/JPG only, max 2MB |
+ 
 ---
 
-## Technologies Used
-
-- HTML
-- CSS
-- JavaScript (Vanilla JS)
-
----
-
-## Future Improvements
-
-- Regex-based validation
-- Strong password validation
-- Real-time validation while typing
-- Phone number formatting
-- Better UI/UX
-- Mobile responsiveness
-
----
 
 ## How to Run
 
@@ -59,8 +60,8 @@ This app validates user input fields and displays error messages when required f
 2. Open the project folder
 3. Run `index.html` in your browser
 
----
+## Author
 
-## Project Status
-
-This project is currently under development and will continue to improve with more advanced validation techniques.
+**Abdullah Ghazi** <br>
+GitHub: https://github.com/Abdullah-Ghazi0 <br>
+LinkedIn: https://www.linkedin.com/in/abdullah-ghazi-swe/
